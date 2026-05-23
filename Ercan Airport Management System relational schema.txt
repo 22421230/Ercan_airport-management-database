@@ -1,0 +1,46 @@
+MODEL(model_id, model_name, manufacturer, capacity)
+PK: model_id
+
+AIRPLANE(plane_id, plane_no, model_id, status)
+PK: plane_id
+FK: model_id → MODEL(model_id)
+
+HANGAR(hangar_id, hangar_no, location)
+PK: hangar_id
+
+HANGAR_OCCUPANCY(occupancy_id, plane_id, hangar_id, check_in_date, check_out_date)
+PK: occupancy_id
+FK: plane_id → AIRPLANE(plane_id)
+FK: hangar_id → HANGAR(hangar_id)
+
+TEST(test_id, test_name, description, max_score)
+PK: test_id
+
+EMPLOYEE(emp_id, emp_name, emp_type, union_no, hire_date)
+PK: emp_id
+
+TECHNICIAN(tech_id, emp_id, expertise_model_id, certification_date)
+PK: tech_id
+FK: emp_id → EMPLOYEE(emp_id)
+FK: expertise_model_id → MODEL(model_id)
+
+PILOT(pilot_id, emp_id, license_number, flight_hours, medical_cert_expiry)
+PK: pilot_id
+FK: emp_id → EMPLOYEE(emp_id)
+
+TESTING_EVENT(event_id, plane_id, test_id, tech_id, test_date, hours_spent, score)
+PK: event_id
+FK: plane_id → AIRPLANE(plane_id)
+FK: test_id → TEST(test_id)
+FK: tech_id → TECHNICIAN(tech_id)
+
+MAINTENANCE_RECORD(maintenance_id, plane_id, maintenance_type, start_date, end_date, cost, description)
+PK: maintenance_id
+FK: plane_id → AIRPLANE(plane_id)
+
+FLIGHT_SCHEDULE(flight_id, flight_no, plane_id, departure_airport, arrival_airport, departure_datetime, arrival_datetime, status)
+PK: flight_id
+FK: plane_id → AIRPLANE(plane_id)
+
+SUPPLIER(supplier_id, supplier_name, contact_person, phone, email, address)
+PK: supplier_id
