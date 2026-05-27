@@ -37,4 +37,3 @@ The design exceeds the minimal project requirements by adding **four extra table
 
 ---
 
-## File Structure
